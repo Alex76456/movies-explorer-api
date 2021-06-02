@@ -30,7 +30,7 @@ const validateMovie = celebrate({
       return url;
     }),
     owner: Joi.string().alphanum().length(24).hex(),
-    movieId: Joi.string(),
+    movieId: Joi.number().required(),
     nameRU: Joi.string().required().min(1).max(300),
     nameEN: Joi.string().required().min(1).max(300)
   })
