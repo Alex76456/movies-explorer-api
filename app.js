@@ -11,7 +11,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  max: 400 // limit each IP to 100 requests per windowMs
 });
 
 const { PORT = 3000 } = process.env;
@@ -24,7 +24,7 @@ mongoose.connect('mongodb://localhost:27017/bitfilmsdb', {
   useCreateIndex: true,
   useFindAndModify: false,
   useUnifiedTopology: true,
-  runValidators: true,
+  runValidators: true
 });
 app.use(limiter);
 app.use(helmet());
@@ -62,7 +62,7 @@ app.use((err, req, res, next) => {
 
   res.status(statusCode).send({
     // проверяем статус и выставляем сообщение в зависимости от него
-    message: statusCode === 500 ? 'На сервере произошла ошибка' : message,
+    message: statusCode === 500 ? 'На сервере произошла ошибка' : message
   });
   next();
 });
