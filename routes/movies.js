@@ -6,10 +6,10 @@ const auth = require('../middlewares/auth');
 
 const validateMovie = celebrate({
   body: Joi.object().keys({
-    country: Joi.string().required().min(1).max(30),
-    director: Joi.string().required().min(1).max(30),
+    country: Joi.string().required().min(1).max(300),
+    director: Joi.string().required().min(1).max(300),
     duration: Joi.number().required(),
-    year: Joi.string().required().min(1).max(30),
+    year: Joi.string().required().min(1).max(300),
     description: Joi.string().required().min(1).max(3000),
     image: Joi.string().required().custom((url) => {
       if (!validator.isURL(url)) {
@@ -31,8 +31,8 @@ const validateMovie = celebrate({
     }),
     owner: Joi.string().alphanum().length(24).hex(),
     movieId: Joi.string(),
-    nameRU: Joi.string().required().min(1).max(30),
-    nameEN: Joi.string().required().min(1).max(30)
+    nameRU: Joi.string().required().min(1).max(300),
+    nameEN: Joi.string().required().min(1).max(300)
   })
 });
 
