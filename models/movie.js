@@ -26,7 +26,6 @@ const movieSchema = new mongoose.Schema({
   description: {
     type: String,
     minlength: 1,
-    maxlength: 3000,
     required: true
   },
   image: {
