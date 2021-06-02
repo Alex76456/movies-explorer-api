@@ -5,29 +5,29 @@ const movieSchema = new mongoose.Schema({
     type: String,
     minlength: 1,
     maxlength: 30,
-    required: true,
+    required: true
   },
   director: {
     type: String,
     minlength: 1,
     maxlength: 30,
-    required: true,
+    required: true
   },
   duration: {
     type: Number,
-    required: true,
+    required: true
   },
   year: {
     type: String,
     minlength: 1,
     maxlength: 30,
-    required: true,
+    required: true
   },
   description: {
     type: String,
     minlength: 1,
-    maxlength: 30,
-    required: true,
+    maxlength: 3000,
+    required: true
   },
   image: {
     type: String,
@@ -35,9 +35,9 @@ const movieSchema = new mongoose.Schema({
       validator(v) {
         return /^(https?:\/\/)([\da-z.-]+)\.([a-z.]{2,6})([/\w\W.-]*)#?$/g.test(v);
       },
-      message: 'Ссылка неверна',
+      message: 'Ссылка неверна'
     },
-    required: true,
+    required: true
   },
   trailer: {
     type: String,
@@ -45,9 +45,9 @@ const movieSchema = new mongoose.Schema({
       validator(v) {
         return /^(https?:\/\/)([\da-z.-]+)\.([a-z.]{2,6})([/\w\W.-]*)#?$/g.test(v);
       },
-      message: 'Ссылка неверна',
+      message: 'Ссылка неверна'
     },
-    required: true,
+    required: true
   },
   thumbnail: {
     type: String,
@@ -55,31 +55,31 @@ const movieSchema = new mongoose.Schema({
       validator(v) {
         return /^(https?:\/\/)([\da-z.-]+)\.([a-z.]{2,6})([/\w\W.-]*)#?$/g.test(v);
       },
-      message: 'Ссылка неверна',
+      message: 'Ссылка неверна'
     },
-    required: true,
+    required: true
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
-    required: true,
+    required: true
   },
   nameRU: {
     type: String,
     minlength: 1,
     maxlength: 30,
-    required: true,
+    required: true
   },
   nameEN: {
     type: String,
     minlength: 1,
     maxlength: 30,
-    required: true,
+    required: true
   },
   createdAt: {
     type: Date,
-    default: Date.now,
-  },
+    default: Date.now
+  }
 });
 
 module.exports = mongoose.model('movie', movieSchema);
