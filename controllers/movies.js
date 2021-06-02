@@ -20,7 +20,7 @@ const createMovie = (req, res, next) => {
     thumbnail,
     movieId,
     nameRU,
-    nameEN,
+    nameEN
   } = req.body;
 
   Movie.create({
@@ -35,7 +35,7 @@ const createMovie = (req, res, next) => {
     movieId,
     nameRU,
     nameEN,
-    owner: req.user._id,
+    owner: req.user._id
   })
     .then((movie) => res.status(201).send(movie))
     .catch((err) => {
@@ -53,9 +53,9 @@ const deleteMovieById = (req, res, next) => {
       if (!movie) {
         throw new NotFoundError('Фильм не найден');
       }
-      if (movie.owner.toString() !== req.user._id) {
-        throw new ForbiddenError('Нельзя удалить чужую карточку');
-      }
+      // if (movie.owner.toString() !== req.user._id) {
+      //   throw new ForbiddenError('Нельзя удалить чужую карточку');
+      // }
     })
     .then(() => {
       Movie.findByIdAndRemove(req.params.movieId)
@@ -85,5 +85,5 @@ const deleteMovieById = (req, res, next) => {
 module.exports = {
   getMovies,
   createMovie,
-  deleteMovieById,
+  deleteMovieById
 };
