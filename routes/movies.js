@@ -10,7 +10,7 @@ const validateMovie = celebrate({
     director: Joi.string().required().min(1).max(30),
     duration: Joi.number().required(),
     year: Joi.string().required().min(1).max(30),
-    description: Joi.string().required().min(1),
+    description: Joi.string().required().min(1).max(3000),
     image: Joi.string().required().custom((url) => {
       if (!validator.isURL(url)) {
         throw new CelebrateError('Неверный URL');
@@ -38,7 +38,7 @@ const validateMovie = celebrate({
 
 const validateMovieId = celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().alphanum().length(24).hex()
+    movieId: Joi.string()
   })
 });
 
