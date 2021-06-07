@@ -2,7 +2,6 @@ const router = require('express').Router();
 
 const validator = require('validator');
 const { celebrate, Joi, CelebrateError } = require('celebrate');
-const auth = require('../middlewares/auth');
 
 const validateMovie = celebrate({
   body: Joi.object().keys({
@@ -44,7 +43,6 @@ const validateMovieId = celebrate({
 
 const { getMovies, createMovie, deleteMovieById } = require('../controllers/movies');
 
-router.use(auth);
 router.get('/', getMovies);
 router.post('/', validateMovie, createMovie);
 router.delete('/:movieId', validateMovieId, deleteMovieById);

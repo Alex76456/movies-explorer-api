@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const userRouter = require('./users');
 const movieRouter = require('./movies');
+const auth = require('../middlewares/auth');
 
 const { createUser, login } = require('../controllers/users');
 
@@ -29,6 +30,7 @@ router.get('/crash-test', () => {
 router.post('/signup', validateUserSignup, createUser);
 router.post('/signin', validateUserLogin, login);
 
+router.use(auth);
 router.use('/users', userRouter);
 router.use('/movies', movieRouter);
 
